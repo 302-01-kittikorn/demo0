@@ -1,240 +1,360 @@
+
 <!DOCTYPE html>
 <html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ประวัติส่วนตัว | น้องโชกุน</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <title>การ์ดประวัติส่วนตัวนักเรียน - ด.ช.กิตติกร สุธนะ</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap');
+
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: 'Kanit', sans-serif;
+            font-family: 'Sarabun', sans-serif;
         }
 
         body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            min-height: 100vh;
+            background-color: #f4f6f9;
+            color: #333;
             display: flex;
             justify-content: center;
             align-items: center;
+            min-height: 100vh;
             padding: 20px;
         }
 
         .profile-card {
             background: #ffffff;
-            border-radius: 24px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             width: 100%;
-            max-width: 450px;
+            max-width: 800px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             overflow: hidden;
-            transition: transform 0.3s ease;
-        }
-
-        .profile-card:hover {
-            transform: translateY(-5px);
-        }
-
-        /* ส่วนหัวสีแดงตามสีที่ชอบ */
-        .card-header {
-            background: linear-gradient(135deg, #ff416c, #ff4b2b);
-            padding: 40px 20px;
-            text-align: center;
-            color: #ffffff;
+            border: 1px solid #e1e8ed;
             position: relative;
         }
 
-        .avatar-container {
-            width: 110px;
-            height: 110px;
-            background: #ffffff;
-            border-radius: 50%;
-            margin: 0 auto 15px;
+        /* Header Styling with Main Red Color Theme */
+        .card-header {
+            background: linear-gradient(135deg, #c0392b, #e74c3c);
+            color: white;
+            padding: 35px 40px;
+            position: relative;
+            border-bottom: 5px solid #962d22;
+        }
+
+        .header-content {
             display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            justify-content: space-between;
+            align-items: flex-start;
         }
 
-        .avatar-container i {
-            font-size: 55px;
-            color: #ff4b2b;
+        .student-title {
+            flex-grow: 1;
         }
 
-        .card-header h1 {
-            font-size: 1.6rem;
-            font-weight: 600;
-            margin-bottom: 5px;
+        .school-badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
             letter-spacing: 0.5px;
+            display: inline-block;
+            margin-bottom: 10px;
+            backdrop-filter: blur(5px);
         }
 
-        .card-header p {
+        .student-name {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            letter-spacing: -0.5px;
+        }
+
+        .student-meta {
             font-size: 1.1rem;
             opacity: 0.9;
-            font-weight: 300;
+            font-weight: 400;
         }
 
-        /* ส่วนข้อมูล */
+        /* Motto Section */
+        .motto-box {
+            background: #fdf2f2;
+            border-left: 5px solid #e74c3c;
+            padding: 15px 25px;
+            margin: 25px 40px 10px 40px;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: #555;
+            font-size: 1.05rem;
+        }
+        
+        .motto-box strong {
+            color: #e74c3c;
+            font-style: normal;
+        }
+
+        /* Content Sections */
         .card-body {
-            padding: 30px 25px;
+            padding: 20px 40px 35px 40px;
+        }
+
+        .section-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .section-block {
+            background: #fafafa;
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid #f0f0f0;
+        }
+
+        .section-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #c0392b;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #f3d1cc;
+            padding-bottom: 6px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Info Items Styling */
+        .info-list {
+            list-style: none;
         }
 
         .info-item {
             display: flex;
-            align-items: center;
-            padding: 15px 0;
-            border-bottom: 1px solid #f0f0f0;
+            margin-bottom: 12px;
+            line-height: 1.5;
+            font-size: 0.95rem;
         }
 
         .info-item:last-child {
-            border-bottom: none;
-        }
-
-        .icon-box {
-            width: 45px;
-            height: 45px;
-            background: #fff5f5;
-            border-radius: 12px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-right: 15px;
-            transition: background 0.3s ease;
-        }
-
-        /* สี Icon Box แยกตามหัวข้อ */
-        .icon-box.birthday { background: #e3f2fd; color: #2196f3; }
-        .icon-box.food { background: #e8f5e9; color: #4caf50; }
-        .icon-box.color { background: #ffebee; color: #f44336; }
-        .icon-box.subject { background: #f3e5f5; color: #9c27b0; }
-        .icon-box.friend { background: #fff3e0; color: #ff9800; } /* สีส้มพาสเทลสำหรับเพื่อนสนิท */
-
-        .icon-box i {
-            font-size: 1.2rem;
-        }
-
-        .info-content {
-            flex: 1;
+            margin-bottom: 0;
         }
 
         .info-label {
-            font-size: 0.85rem;
-            color: #888888;
-            text-transform: uppercase;
-            margin-bottom: 2px;
-            display: block;
+            font-weight: 600;
+            color: #666;
+            width: 130px;
+            flex-shrink: 0;
         }
 
         .info-value {
-            font-size: 1.05rem;
-            color: #333333;
-            font-weight: 500;
+            color: #2c3e50;
+            flex-grow: 1;
         }
 
-        /* ตกแต่งแท็ก */
-        .color-badge {
-            display: inline-block;
-            background: #ff4b2b;
-            color: white;
-            padding: 2px 12px;
-            border-radius: 20px;
-            font-size: 0.95rem;
-            font-weight: 400;
-        }
-
-        .subject-tags {
+        /* Tags / Pills */
+        .tag-container {
             display: flex;
+            flex-wrap: wrap;
             gap: 8px;
-            margin-top: 4px;
+            margin-top: 5px;
         }
 
-        .subject-badge {
-            background: #f1f3f4;
-            color: #5f6368;
+        .pill-tag {
+            background: #e74c3c;
+            color: white;
             padding: 4px 12px;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            font-weight: 400;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            display: inline-block;
+            box-shadow: 0 2px 5px rgba(231, 76, 60, 0.2);
+        }
+
+        .pill-tag.alt {
+            background: #34495e;
+            box-shadow: 0 2px 5px rgba(52, 73, 94, 0.2);
+        }
+
+        /* Print Optimization for A4 */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+                display: block;
+            }
+            .profile-card {
+                box-shadow: none;
+                border: 1px solid #ccc;
+                max-width: 100%;
+                border-radius: 0;
+            }
+            .card-header {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .motto-box {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .pill-tag {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                border: 1px solid #c0392b;
+            }
+            .pill-tag.alt {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                border: 1px solid #2c3e50;
+            }
+            .section-block {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                background: #fafafa !important;
+            }
+        }
+
+        /* Responsive Design for mobile viewing */
+        @media (max-width: 768px) {
+            .section-grid {
+                grid-template-columns: 1fr;
+            }
+            .card-header {
+                padding: 25px 20px;
+            }
+            .card-body {
+                padding: 15px 20px 25px 20px;
+            }
+            .motto-box {
+                margin: 20px 20px 5px 20px;
+            }
+            .student-name {
+                font-size: 1.8rem;
+            }
         }
     </style>
 </head>
 <body>
 
     <div class="profile-card">
+        <!-- Header Section -->
         <div class="card-header">
-            <div class="avatar-container">
-                <i class="fa-solid fa-user-astronaut"></i>
+            <div class="header-content">
+                <div class="student-title">
+                    <span class="school-badge">โรงเรียนจอมทอง</span>
+                    <h1 class="student-name">ด.ช.กิตติกร สุธนะ (โชกุน)</h1>
+                    <div class="student-meta">ระดับชั้น: ม.3/2 &nbsp;|&nbsp; เพศ: ชาย</div>
+                </div>
             </div>
-            <h1>ด.ช.กิตติกร สุธนะ</h1>
-            <p>ชื่อเล่น: <strong>โชกุน</strong></p>
         </div>
 
+        <!-- Motto Section -->
+        <div class="motto-box">
+            <strong>คติประจำใจ:</strong> “คนจริงโอวันตินต้องละลาย”
+        </div>
+
+        <!-- Card Body Profile Info -->
         <div class="card-body">
-            <div class="info-item">
-                <div class="icon-box birthday">
-                    <i class="fa-solid fa-cake-candles"></i>
+            <div class="section-grid">
+                
+                <!-- ข้อมูลส่วนตัวทั่วไป -->
+                <div class="section-block">
+                    <h2 class="section-title">ข้อมูลส่วนตัวทั่วไป</h2>
+                    <ul class="info-list">
+                        <li class="info-item">
+                            <span class="info-label">วันเกิด:</span>
+                            <span class="info-value">วันที่ 5 เดือน กันยายน พ.ศ. 2554</span>
+                        </li>
+                        <li class="info-item">
+                            <span class="info-label">ราศี:</span>
+                            <span class="info-value">สิงห์</span>
+                        </li>
+                        <li class="info-item">
+                            <span class="info-label">ภูมิลำเนา:</span>
+                            <span class="info-value">จังหวัดเชียงใหม่</span>
+                        </li>
+                        <li class="info-item">
+                            <span class="info-label">ส่วนสูง:</span>
+                            <span class="info-value">175 ซม.</span>
+                        </li>
+                    </ul>
                 </div>
-                <div class="info-content">
-                    <span class="info-label">วันเกิด</span>
-                    <span class="info-value">5 กันยายน พ.ศ. 2554</span>
-                </div>
-            </div>
 
-            <div class="info-item">
-                <div class="icon-box subject">
-                    <i class="fa-solid fa-book-open"></i>
+                <!-- การศึกษาและความสนใจ -->
+                <div class="section-block">
+                    <h2 class="section-title">การศึกษา & ความชอบ</h2>
+                    <ul class="info-list">
+                        <li class="info-item">
+                            <span class="info-label">วิชาที่ชอบ:</span>
+                            <span class="info-value" style="color: #27ae60; font-weight: bold;">วิชาคณิตศาสตร์</span>
+                        </li>
+                        <li class="info-item">
+                            <span class="info-label">วิชาที่ยาก:</span>
+                            <span class="info-value" style="color: #c0392b; font-weight: bold;">วิชาภาษาไทย</span>
+                        </li>
+                        <li class="info-item">
+                            <span class="info-label">อาหารโปรด:</span>
+                            <span class="info-value">ปลาย่าง</span>
+                        </li>
+                        <li class="info-item">
+                            <span class="info-label">สีโปรด:</span>
+                            <span class="info-value" style="color: #e74c3c; font-weight: bold;">แดง</span>
+                        </li>
+                    </ul>
                 </div>
-                <div class="info-content">
-                    <span class="info-label">วิชาที่ชอบ</span>
-                    <div class="subject-tags">
-                        <span class="subject-badge">
-                            <i class="fa-solid fa-calculator" style="color: #e91e63;"></i> คณิตศาสตร์
-                        </span>
-                        <span class="subject-badge">
-                            <i class="fa-solid fa-laptop-code" style="color: #00bcd4;"></i> คอมพิวเตอร์
-                        </span>
-                    </div>
-                </div>
-            </div>
 
-            <div class="info-item">
-                <div class="icon-box food">
-                    <i class="fa-solid fa-utensils"></i>
+                <!-- ไลฟ์สไตล์และกิจกรรม -->
+                <div class="section-block">
+                    <h2 class="section-title">ไลฟ์สไตล์ & กิจกรรม</h2>
+                    <ul class="info-list">
+                        <li class="info-item">
+                            <span class="info-label">งานอดิเรก:</span>
+                            <span class="info-value">ดูทีวี</span>
+                        </li>
+                        <li class="info-item">
+                            <span class="info-label">กีฬา:</span>
+                            <span class="info-value">ฟุตบอล</span>
+                        </li>
+                        <li class="info-item">
+                            <span class="info-label">เพลงที่ชอบ:</span>
+                            <span class="info-value">metal</span>
+                        </li>
+                        <li class="info-item">
+                            <span class="info-label">ซีรีส์/อนิเมะ:</span>
+                            <span class="info-value">Attack on titan</span>
+                        </li>
+                    </ul>
                 </div>
-                <div class="info-content">
-                    <span class="info-label">อาหารที่ชอบ</span>
-                    <span class="info-value">ปลาย่าง <i class="fa-solid fa-fish" style="color: #3498db; margin-left: 5px;"></i></span>
-                </div>
-            </div>
 
-            <div class="info-item">
-                <div class="icon-box color">
-                    <i class="fa-solid fa-palette"></i>
+                <!-- ข้อมูลอื่นๆ และทักษะ -->
+                <div class="section-block">
+                    <h2 class="section-title">กลุ่ม & ความฝัน</h2>
+                    <ul class="info-list">
+                        <li class="info-item">
+                            <span class="info-label">แก๊งซ่ายามาฮ่า:</span>
+                            <span class="info-value">ปังปอนด์</span>
+                        </li>
+                        <li class="info-item">
+                            <span class="info-label">ชมรม/กิจกรรม:</span>
+                            <span class="info-value">หมูกรอบ</span>
+                        </li>
+                        <li class="info-item">
+                            <span class="info-label">ความฝัน/อาชีพ:</span>
+                            <span class="info-value" style="font-weight: 600; color: #2c3e50;">สรรพากร</span>
+                        </li>
+                        <li class="info-item" style="margin-top: 15px; display: block;">
+                            <span class="info-label" style="display: block; margin-bottom: 8px;">ทักษะพิเศษ:</span>
+                            <div class="tag-container">
+                                <span class="pill-tag">ทักษะ เดินบนน้ำ</span>
+                                <span class="pill-tag alt">ผู้ใช้สแตนด์</span>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-                <div class="info-content">
-                    <span class="info-label">สีที่ชอบ</span>
-                    <span class="info-value">
-                        <span class="color-badge">สีแดง</span>
-                    </span>
-                </div>
-            </div>
 
-            <div class="info-item">
-                <div class="icon-box friend">
-                    <i class="fa-solid fa-user-group"></i>
-                </div>
-                <div class="info-content">
-                    <span class="info-label">เพื่อนสนิท</span>
-                    <span class="info-value">ปังปอนด์ <i class="fa-solid fa-heart" style="color: #ff6b6b; margin-left: 5px; font-size: 0.9rem;"></i></span>
-                </div>
             </div>
         </div>
     </div>
