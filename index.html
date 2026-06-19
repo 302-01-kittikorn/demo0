@@ -1,4 +1,3 @@
-HTML
 <!DOCTYPE html>
 <html lang="th">
 <head>
@@ -47,23 +46,26 @@ HTML
 
         .header-content {
             display: flex;
-            justify-content: space-between;
-            align-items: center; /* เปลี่ยนเป็นกึ่งกลางแนวตั้ง */
+            /* แก้ไข: เปลี่ยนเป็น column เพื่อให้รูปอยู่บน ข้อความอยู่ล่าง */
+            flex-direction: column; 
+            justify-content: center;
+            align-items: center; /* กึ่งกลางแนวนอน */
             gap: 20px;
+            text-align: center; /* จัดตัวอักษรให้อยู่กึ่งกลาง */
         }
 
         .student-title {
             flex-grow: 1;
         }
 
-        /* เพิ่มสไตล์สำหรับรูปภาพโปรไฟล์ด้านบน */
+        /* สไตล์สำหรับรูปภาพโปรไฟล์ด้านบน */
         .profile-img-header {
-            width: 110px;
-            height: 110px;
+            width: 130px; /* ขยายขนาดรูปเล็กน้อยให้น่าสนใจ */
+            height: 130px;
             border-radius: 50%;
             object-fit: cover;
-            border: 4px solid rgba(255, 255, 255, 0.4);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            border: 5px solid rgba(255, 255, 255, 0.5); /* เพิ่มความหนาขอบ */
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
             flex-shrink: 0;
         }
 
@@ -76,7 +78,7 @@ HTML
             text-transform: uppercase;
             letter-spacing: 0.5px;
             display: inline-block;
-            margin-bottom: 10px;
+            margin-bottom: 15px; /* เพิ่มระยะห่าง */
             backdrop-filter: blur(5px);
         }
 
@@ -231,19 +233,16 @@ HTML
 
         /* Responsive Design for mobile viewing */
         @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column-reverse; /* สลับให้รูปอยู่ด้านบนข้อความในมือถือ */
-                align-items: flex-start;
-            }
+            /* แก้ไข: ลบ flex-direction: column-reverse ของเก่าออก */
             .profile-img-header {
-                width: 90px;
-                height: 90px;
+                width: 100px;
+                height: 100px;
             }
             .section-grid {
                 grid-template-columns: 1fr;
             }
             .card-header {
-                padding: 25px 20px;
+                padding: 30px 20px;
             }
             .card-body {
                 padding: 15px 20px 25px 20px;
@@ -262,12 +261,14 @@ HTML
     <div class="profile-card">
         <div class="card-header">
             <div class="header-content">
+                <!-- แก้ไข: ย้าย tag <img> มาไว้ก่อนหน้า .student-title เพื่อให้อยู่ด้านบน -->
+                <img src="data:image/jpeg;base64,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กรรม" class="profile-img-header">
+
                 <div class="student-title">
                     <span class="school-badge">โรงเรียนจอมทอง</span>
                     <h1 class="student-name">ด.ช.กิตติกร สุธนะ (โชกุน)</h1>
                     <div class="student-meta">ระดับชั้น: ม.3/2 &nbsp;|&nbsp; เพศ: ชาย</div>
                 </div>
-                <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMTEhUSEhMWFRUVEBUSFRUWFRUWFRUVFRUXFhUVFRUYHSggGBolHhUVITEhJSkrLi4uFx8zODMsNygtLisBCgoKDg0OGhAQGi0fHx8tLS0tLS0tLS0tLSstKy0rLS0tLS0tLS0tLS0tLS0tLSstLS0tLS0vLS0tLS0tKy0tK//AABEIALcBEwMBIgACEQEDEQH/xAAbAAABBQEBAAAAAAAAAAAAADAGAAECBAUGB//EAD0QAAEEAAQEBAMGBQQBBQEAAAEAAgMRBBIhMQVBUWEGEyJxMoGRI6GxwdHwFBVCUmIzU+HxcoKDk9LyFv/EABkBAAMBAQEAAAAAAAAAAAAAAAABAgMEBf/EACMRAAICAgIDAQADAQAAAAAAAAABAhEDEiExE0FRBCIjYUL/2gAMAwEAAhEDEQA/AMp0CQYoyYjVOyQLgPT4CeWomNFaUznJFEGwhGbhwhiUIjJwkOhnYYKH8GFbbKE+dLZhqikMIpHBq61GjAUubHqjMGCUhg1riMKDmKd2FIzfIpReKV2QoL6Vpg0Ui1MWIzghlaIgg5qE5iOVFwTFRWe1RBRnNUMiYUIBPlSDVK0CGLFFzVLMmzIGBc1DMSsUpBqaYmir5KXlK0GJnMT2JoqOhQXxK+WoTmJ2LUoGNSYxWXsQ2hMmicbEQxpMKJaTKKxYkilJMRXExViGZZAmRW4hDiSpG6ydM+VZIxSf+IUamimaBkTiVUWS2rEQtS0WpFyOUq0xyrwRK0yNZtlofzCjRzIL2quXkKOyjWZOoyYhZ0eJSklS1CyxJOgGZVJJELOtYxIci6ZE2ZVfMSMiuiGyzmStVw9TDkUNMIllSa5TtIpMEQmcEVyGWosbSAkKIYilqQTsihqThSKigY6QSClSYqIOCgQioT0yWAkQSrLghuarRmwQKfOk4KATJsnaScJkDMAvTglFEKkIVLyo5dgWYqQlKJ5aYxFJZEytycU60sLiFk5USOSkOmaRyHSxTq+ycUuVbjEVmPWbx2dEcqOl80KvLSy4sd3TnE91KxmnkRcISKp/xKmJlehG48iGArGFyve1pdlDjWYi6vbRFx3D5I5RCW25x9Fah97FpRsk9Q/0plQJU3vIJaRRBog8iFC1SJbE16M1yBSmFTJQcOU/MVfOkSd6IO0Uดม66A69FthMMzhwYHOY5wBABFmup6LrciN6Sro4sedxdonD4h8Q4dwh8Q+InUhxaDQ6bda7re4bhvIDCHVIesZI9R3r6D6K6NMIllSu4hFzVLMmzIGBc1DMSsUpBqaYmir5KXlK0GJnMT2JoqOhQXxK+WoTmJ2LUoGNSYxWXsQ2hMmicbEQxpMKJaTKKxYkilJMRXExViGZZAmRW4hDiSpG6ydM+VZIxSf+IUamimaBkTiVUWS2rEQtS0WpFyOUq0xyrwRK0yNZtlofzCjRzIL2quXkKOyjWZOoyYhZ0eJSklS1CyxJOgGZVJJELOtYxIci6ZE2ZVfMSMiuiGyzmStVw9TDkUNMIllSa5TtIpMEQmcEVyGWosbSAkKIYilqQTsihqThSKigY6QSClSYqIOCgQioT0yWAkQSrLghuarRmwQKfOk4KATJsnaScJkDMAvTglFEKkIVLyo5dgWYqQlKJ5aYxFJZEytycU60sLiFk5USOSkOmaRyHSxTq+ycUuVbjEVmPWbx2dEcqOl80KvLSy4sd3TnE91KxmnkRcISKp/xKmJlehG48iGArGFyve1pdlDjWYi6vbRFx3D5I5RCW25x9Fah97FpRsk9Q/0plQJU3vIJaRRBog8iFC1SJbE16M1yBSmFTJQcOU/MVfOkSd6NE0DWhPRS0UpFoSpxIgYSJ8jgxgzOO1fj7I/EMI6F5jeWlwAJymxry1A1U8XRWzEXpiUDMmzp0PYOmKg16K1yktEQUUFDdSiCmAalBzUs6mCgQEsUHNVgNT5U7JcSi+NDyLQdGoOjVKRDgVaSRSxJVYtTLEacMRsicNXBycALy0/ko2VKkrYyuYEN2HV21IBWpsZlPgQHxlbZjQXwLaGUaZjeY4KTcSVouwyGcIt90Vsyu3ElHZikjg0KaHK0u6An6I2TGpshxWeMhsbpWsdeYinOq9BmLR6d7rdeheHsTMGMGINuBBa4UQW6ZJGu5iiNR17rxN5JJvmSb917R4Y8QxS4ZkDocjYYMxkLx6aJAGXLzsDfn2WP7MP9d3ybYcjbotcb4cQXysjY5xBa4PAIDut7j35Lk3YSQNt0bwK3LTWm+uy9FkxLHsdIHBwLQHAa7CjYrfdc9Jhpsn2T9cv+m74HEaB2v8AVX102pcWDI09JFZ6jUl7OWF6Cjrt3vauqKyF5NBpJ7AnY0SK3FrUxDMSDZgc5zi9pIpzRGWtbsNbsNN3yT4bCYzymMH2elG5AaonLTQLB2uruvku7r2ZOcfpS/lc2n2TgCas0K6k2dguk4LCQzKHOMYJABIzHM4kagaUTfYOUGHkaLkmfI7KRZNAGuUY61vv16Lb4ZhPLDCHVJrefSfoPXMLisNxEzhzgGAXpYLuY6Dqu28HcJbLg3wvtzpGgucKIc3ONN9dWm/YrxmCbJLnbYAfbR2vY/LRdn48H9ez7YsuVqVHdqJKI9qC9q12RVkmyKfmKo61AvITpMayFzzUhIqQlR43JVRadlgSqbZ1FjbSMSm0Vqyw2VSL1UCTnpi5LmdM4qiZipMmT1J2DlJQzJIoLJ+Sn8hGDlMLkOKio6BDMKv0lkSCjNMSQjK0PLS8pFCooZSpUrhiTeSgKKnlqQhVjy0+VO2Mr+QsnieNLDUTc2Wi55HoIB+Ef3A7ErS4vMGsDBZfI4NY0aWP6iSdhsPmrHhjhbZYWSy7ZgWx8n0aBiTyvYDdWnqtmaR0XMmU+FeHcJ/rszSOHqjgeRlaeWbS3gd/naeYeVE6Nx9cr8ziNSRr+d9tVqw8OiikqeVoMj3Oa0GtDtebmtLHeGGlxxGG9TxRdE8+lากรรม" class="profile-img-header">
             </div>
         </div>
 
